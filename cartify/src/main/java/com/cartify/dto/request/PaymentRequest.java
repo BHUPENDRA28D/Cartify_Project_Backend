@@ -9,10 +9,7 @@ import lombok.Setter;
 
 //import org.antlr.v4.runtime.misc.NotNull;
 //import org.hibernate.annotations.processing.Pattern;
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class PaymentRequest {
 
 
@@ -25,7 +22,66 @@ public class PaymentRequest {
         private String expiryDate;
         private String cvv;
         private String upiId;
-    }
+
+        // getter setters
+
+
+        public Long getOrderId() {
+                return orderId;
+        }
+
+        public void setOrderId(Long orderId) {
+                this.orderId = orderId;
+        }
+
+        public PaymentMode getPaymentMode() {
+                return paymentMode;
+        }
+
+        public void setPaymentMode(PaymentMode paymentMode) {
+                this.paymentMode = paymentMode;
+        }
+
+        public String getCardNumber() {
+                return cardNumber;
+        }
+
+        public void setCardNumber(String cardNumber) {
+                this.cardNumber = cardNumber;
+        }
+
+        public String getCardHolderName() {
+                return cardHolderName;
+        }
+
+        public void setCardHolderName(String cardHolderName) {
+                this.cardHolderName = cardHolderName;
+        }
+
+        public String getExpiryDate() {
+                return expiryDate;
+        }
+
+        public void setExpiryDate(String expiryDate) {
+                this.expiryDate = expiryDate;
+        }
+
+        public String getCvv() {
+                return cvv;
+        }
+
+        public void setCvv(String cvv) {
+                this.cvv = cvv;
+        }
+
+        public String getUpiId() {
+                return upiId;
+        }
+
+        public void setUpiId(String upiId) {
+                this.upiId = upiId;
+        }
+}
 
 //    @NotNull(message = "Order Id is required")
 //    private Long orderId;

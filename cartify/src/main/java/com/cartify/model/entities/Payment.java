@@ -1,41 +1,85 @@
-
 package com.cartify.model.entities;
 
+import com.cartify.model.entities.Order;
+import com.cartify.model.entities.base.BaseEntity;
 import com.cartify.model.enums.PaymentMode;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class Payment {
+@Table(name = "payments")
+public class Payment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(optional = false)
     @JoinColumn(name = "order_id", nullable = false, unique = true)
     private Order order;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private PaymentMode paymentMode;
 
-
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String transactionId;
 
-    private Double amount;
+    @Column(nullable = false)
+    private LocalDateTime paidAt;
+
+    // getters & setters
 
 
-    private LocalDateTime timestamp;
+    public Payment() {
+    }
 
-    private boolean success;
+    public Payment(Long id, Order order, PaymentMode paymentMode, String transactionId, LocalDateTime paidAt) {
+        this.id = id;
+        this.order = order;
+        this.paymentMode = paymentMode;
+        this.transactionId = transactionId;
+        this.paidAt = paidAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public PaymentMode getPaymentMode() {
+        return paymentMode;
+    }
+
+    public void setPaymentMode(PaymentMode paymentMode) {
+        this.paymentMode = paymentMode;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public LocalDateTime getPaidAt() {
+        return paidAt;
+    }
+
+    public void setPaidAt(LocalDateTime paidAt) {
+        this.paidAt = paidAt;
+    }
 }
