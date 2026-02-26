@@ -1,0 +1,143 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- =========================
+-- 1️⃣ ADMINS
+-- =========================
+INSERT INTO admins (id, created_at, updated_at, email, enabled, name, password, role) VALUES
+(1,NOW(),NOW(),'admin1@cartify.com',1,'System Admin','admin123','ROLE_ADMIN'),
+(2,NOW(),NOW(),'warehouse@cartify.com',1,'Warehouse Admin','admin123','ROLE_ADMIN'),
+(3,NOW(),NOW(),'finance@cartify.com',1,'Finance Admin','admin123','ROLE_ADMIN'),
+(4,NOW(),NOW(),'support@cartify.com',1,'Support Admin','admin123','ROLE_ADMIN'),
+(5,NOW(),NOW(),'sales@cartify.com',1,'Sales Admin','admin123','ROLE_ADMIN'),
+(6,NOW(),NOW(),'ops@cartify.com',1,'Operations Admin','admin123','ROLE_ADMIN'),
+(7,NOW(),NOW(),'hr@cartify.com',1,'HR Admin','admin123','ROLE_ADMIN');
+
+-- =========================
+-- 2️⃣ CUSTOMERS
+-- =========================
+INSERT INTO customers 
+(id, created_at, updated_at, address1, address2, city, country, customer_id, email, enabled, name, password, phone_number, role, state, zip_code)
+VALUES
+(1,NOW(),NOW(),'Street 1','Near Lake','Bhopal','India','CUST1001','rahul@mail.com',1,'Rahul Sharma','123456','9876543210','ROLE_CUSTOMER','MP','462001'),
+(2,NOW(),NOW(),'Street 2','Near Mall','Indore','India','CUST1002','anjali@mail.com',1,'Anjali Verma','123456','9123456780','ROLE_CUSTOMER','MP','452001'),
+(3,NOW(),NOW(),'Street 3','Near Park','Delhi','India','CUST1003','vikram@mail.com',1,'Vikram Singh','123456','9988776655','ROLE_CUSTOMER','Delhi','110001'),
+(4,NOW(),NOW(),'Street 4','Andheri','Mumbai','India','CUST1004','priya@mail.com',1,'Priya Mehta','123456','9871112233','ROLE_CUSTOMER','MH','400001'),
+(5,NOW(),NOW(),'Street 5','Pink City','Jaipur','India','CUST1005','rohit@mail.com',1,'Rohit Jain','123456','9765432109','ROLE_CUSTOMER','RJ','302001'),
+(6,NOW(),NOW(),'Street 6','Hazratganj','Lucknow','India','CUST1006','neha@mail.com',1,'Neha Gupta','123456','9872223344','ROLE_CUSTOMER','UP','226001'),
+(7,NOW(),NOW(),'Street 7','Navrangpura','Ahmedabad','India','CUST1007','aman@mail.com',1,'Aman Tiwari','123456','9998887766','ROLE_CUSTOMER','GJ','380001');
+
+-- =========================
+-- 3️⃣ PRODUCTS (product table)
+-- =========================
+INSERT INTO product 
+(id, created_at, updated_at, category, description, is_deleted, name, price, quantity, status)
+VALUES
+(1,NOW(),NOW(),'Electronics','Gaming Laptop',0,'Gaming Laptop',75000,15,'ACTIVE'),
+(2,NOW(),NOW(),'Electronics','5G Smartphone',0,'Smartphone',25000,30,'ACTIVE'),
+(3,NOW(),NOW(),'Home','800W Microwave',0,'Microwave Oven',9000,20,'ACTIVE'),
+(4,NOW(),NOW(),'Fashion','Winter Jacket',0,'Men Jacket',3500,40,'ACTIVE'),
+(5,NOW(),NOW(),'Books','Java Programming Guide',0,'Java Book',1200,50,'ACTIVE'),
+(6,NOW(),NOW(),'Electronics','Noise Cancelling Headphones',0,'Headphones',2000,25,'ACTIVE'),
+(7,NOW(),NOW(),'Furniture','Ergonomic Office Chair',0,'Office Chair',7000,10,'ACTIVE');
+
+-- =========================
+-- 4️⃣ CARTS
+-- =========================
+INSERT INTO carts (id, created_at, updated_at, customer_id) VALUES
+(1,NOW(),NOW(),1),
+(2,NOW(),NOW(),2),
+(3,NOW(),NOW(),3),
+(4,NOW(),NOW(),4),
+(5,NOW(),NOW(),5),
+(6,NOW(),NOW(),6),
+(7,NOW(),NOW(),7);
+
+-- =========================
+-- 5️⃣ CART ITEMS
+-- =========================
+INSERT INTO cart_items (id, created_at, updated_at, quantity, cart_id, product_id) VALUES
+(1,NOW(),NOW(),1,1,1),
+(2,NOW(),NOW(),2,2,2),
+(3,NOW(),NOW(),1,3,3),
+(4,NOW(),NOW(),3,4,4),
+(5,NOW(),NOW(),2,5,5),
+(6,NOW(),NOW(),1,6,6),
+(7,NOW(),NOW(),1,7,7);
+
+-- =========================
+-- 6️⃣ ORDERS
+-- =========================
+INSERT INTO orders 
+(id, created_at, updated_at, arriving_date, cancelled_date, order_date, order_id, shipping_address, status, total_amount, customer_id)
+VALUES
+(1,NOW(),NOW(),NULL,NULL,NOW(),'ORD1001','Bhopal Address','PENDING',75000,1),
+(2,NOW(),NOW(),NULL,NULL,NOW(),'ORD1002','Indore Address','CONFIRMED',25000,2),
+(3,NOW(),NOW(),NULL,NULL,NOW(),'ORD1003','Delhi Address','DELIVERED',9000,3),
+(4,NOW(),NOW(),NULL,NULL,NOW(),'ORD1004','Mumbai Address','PENDING',3500,4),
+(5,NOW(),NOW(),NULL,NULL,NOW(),'ORD1005','Jaipur Address','CANCELLED',1200,5),
+(6,NOW(),NOW(),NULL,NULL,NOW(),'ORD1006','Lucknow Address','CONFIRMED',2000,6),
+(7,NOW(),NOW(),NULL,NULL,NOW(),'ORD1007','Ahmedabad Address','IN_TRANSIT',7000,7);
+
+-- =========================
+-- 7️⃣ ORDER ITEMS
+-- =========================
+INSERT INTO order_items
+(id, created_at, updated_at, category, description, price, product_name, quantity, order_id, product_id)
+VALUES
+(1,NOW(),NOW(),'Electronics','Gaming Laptop',75000,'Gaming Laptop',1,1,1),
+(2,NOW(),NOW(),'Electronics','Smartphone',25000,'Smartphone',1,2,2),
+(3,NOW(),NOW(),'Home','Microwave Oven',9000,'Microwave Oven',1,3,3),
+(4,NOW(),NOW(),'Fashion','Men Jacket',3500,'Men Jacket',1,4,4),
+(5,NOW(),NOW(),'Books','Java Book',1200,'Java Book',1,5,5),
+(6,NOW(),NOW(),'Electronics','Headphones',2000,'Headphones',1,6,6),
+(7,NOW(),NOW(),'Furniture','Office Chair',7000,'Office Chair',1,7,7);
+
+-- =========================
+-- 8️⃣ PAYMENTS
+-- =========================
+INSERT INTO payments
+(id, created_at, updated_at, paid_at, payment_mode, transaction_id, order_id)
+VALUES
+(1,NOW(),NOW(),NOW(),'UPI','TXN1002',2),
+(2,NOW(),NOW(),NOW(),'CREDIT_CARD','TXN1003',3),
+(3,NOW(),NOW(),NOW(),'DEBIT_CARD','TXN1006',6),
+(4,NOW(),NOW(),NOW(),'UPI','TXN1001',1),
+(5,NOW(),NOW(),NOW(),'CREDIT_CARD','TXN1004',4),
+(6,NOW(),NOW(),NOW(),'UPI','TXN1007',7),
+(7,NOW(),NOW(),NOW(),'DEBIT_CARD','TXN1005',5);
+
+-- =========================
+-- 9️⃣ INVOICES
+-- =========================
+INSERT INTO invoices
+(id, created_at, updated_at, generated_at, invoice_number, pdf, total_amount, transaction_id, order_id)
+VALUES
+(1,NOW(),NOW(),NOW(),'INV1002',NULL,25000,'TXN1002',2),
+(2,NOW(),NOW(),NOW(),'INV1003',NULL,9000,'TXN1003',3),
+(3,NOW(),NOW(),NOW(),'INV1006',NULL,2000,'TXN1006',6),
+(4,NOW(),NOW(),NOW(),'INV1001',NULL,75000,'TXN1001',1),
+(5,NOW(),NOW(),NOW(),'INV1004',NULL,3500,'TXN1004',4),
+(6,NOW(),NOW(),NOW(),'INV1007',NULL,7000,'TXN1007',7),
+(7,NOW(),NOW(),NOW(),'INV1005',NULL,1200,'TXN1005',5);
+
+-- =========================
+-- 🔟 FEEDBACKS
+-- =========================
+INSERT INTO feedbacks
+(id, created_at, updated_at, description, rating, customer_id, order_id)
+VALUES
+(1,NOW(),NOW(),'Excellent laptop performance',5,1,1),
+(2,NOW(),NOW(),'Fast delivery and good packaging',4,2,2),
+(3,NOW(),NOW(),'Microwave works perfectly',5,3,3),
+(4,NOW(),NOW(),'Jacket quality is good',4,4,4),
+(5,NOW(),NOW(),'Book content is helpful',5,5,5),
+(6,NOW(),NOW(),'Headphones sound amazing',5,6,6),
+(7,NOW(),NOW(),'Chair is very comfortable',4,7,7);
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+
+
+// select query.
