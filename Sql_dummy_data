@@ -140,4 +140,33 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 
 
+
+
+//select query 
+
+
+SELECT * FROM admins;
+
+SELECT * FROM customers;
+
+SELECT * FROM product;
+
+SELECT * FROM carts;
+
+SELECT * FROM cart_items;
+
+SELECT * FROM orders;
+
+SELECT * FROM order_items;
+
+SELECT * FROM payments;
+
+SELECT * FROM invoices;
+
+SELECT * FROM feedbacks;
+
+
+
+
+
 // select query.
